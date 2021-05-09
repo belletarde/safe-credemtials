@@ -55,4 +55,3 @@ val netModule = module {
     single { provideHttpClient() }
     single { provideRetrofit(get()) }
 }
-

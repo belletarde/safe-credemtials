@@ -20,15 +20,24 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        viewModel.loadingState.observe(this, Observer { result ->
-            Toast.makeText(this, "Err", Toast.LENGTH_LONG).show()
-        })
-
+        getAll()
     }
 
-    override fun onResume() {
-        super.onResume()
-        viewModel.getList()
+    private fun getAll() {
+        viewModel.getList().observe(this, Observer {
+            it?.let { resource ->
+                when (resource.status) {
+                    Status.SUCCESS -> {
+                        Toast.makeText(this, "succ", Toast.LENGTH_LONG).show()
+                    }
+                    Status.ERROR -> {
+                        Toast.makeText(this, "Err", Toast.LENGTH_LONG).show()
+                    }
+                    Status.LOADING -> {
+                        Toast.makeText(this, "load", Toast.LENGTH_LONG).show()
+                    }
+                }
+            }
+        })
     }
 }
