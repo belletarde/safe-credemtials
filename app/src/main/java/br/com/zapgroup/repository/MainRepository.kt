@@ -1,11 +1,12 @@
 package br.com.zapgroup.repository
 
-import br.com.zapgroup.model.PropertyResponse
+import br.com.zapgroup.model.api.PropertyResponse
+import br.com.zapgroup.model.db.PropertyTable
 
 interface MainRepository {
-    suspend fun getList(): List<Any>
+    suspend fun getList(): List<PropertyResponse>
 
-    suspend fun addPropertyToTable(propertyList: List<PropertyResponse>) : List<Long>
+    suspend fun addPropertyToTable(propertyList: List<PropertyTable>) : List<Long>
 
-    suspend fun deleteAll()
+    suspend fun getAnyProperty(): PropertyTable
 }

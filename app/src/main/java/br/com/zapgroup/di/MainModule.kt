@@ -1,11 +1,16 @@
 package br.com.zapgroup.di
 
+import android.app.Application
+import androidx.room.Room
 import br.com.zapgroup.api.ApiService
 import br.com.zapgroup.api.MainApi
+import br.com.zapgroup.data.AppDatabase
+import br.com.zapgroup.data.PropertyDao
 import br.com.zapgroup.repository.MainRepository
 import br.com.zapgroup.viewmodel.MainViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -20,11 +25,11 @@ val mainModule = module {
 }
 
 val repositoryModule = module {
-    fun provideUserRepository(api: ApiService): MainRepository {
-        return MainApi(api)
+    fun provideUserRepository(api: ApiService, db: PropertyDao): MainRepository {
+        return MainApi(api, db)
     }
 
-    single { provideUserRepository(get()) }
+    factory { provideUserRepository(get(), get()) }
 }
 
 val serviceModule = module {
@@ -32,7 +37,7 @@ val serviceModule = module {
         return retrofit.create(ApiService::class.java)
     }
 
-    single { provideUserApi(get()) }
+    factory { provideUserApi(get()) }
 }
 
 val netModule = module {
@@ -52,6 +57,21 @@ val netModule = module {
             .client(client)
             .build()
     }
-    single { provideHttpClient() }
-    single { provideRetrofit(get()) }
+    factory { provideHttpClient() }
+    factory { provideRetrofit(get()) }
+}
+
+val databaseModule = module {
+    fun provideDatabase(application: Application): AppDatabase {
+        return Room.databaseBuilder(application, AppDatabase::class.java, "eds.database")
+            .build()
+    }
+
+
+    fun provideDao(database: AppDatabase): PropertyDao {
+        return database.userDao
+    }
+
+    single { provideDatabase(androidApplication()) }
+    single { provideDao(get()) }
 }

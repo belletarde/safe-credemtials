@@ -1,6 +1,6 @@
 package br.com.zapgroup.api
 
-import br.com.zapgroup.model.PropertyResponse
+import br.com.zapgroup.model.api.PropertyResponse
 import retrofit2.http.GET
 
 interface ApiService {

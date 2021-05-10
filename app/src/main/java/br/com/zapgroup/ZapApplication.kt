@@ -14,7 +14,7 @@ class ZapApplication: Application() {
         startKoin {
             androidLogger()
             androidContext(this@ZapApplication)
-            modules(netModule, serviceModule, repositoryModule, mainModule)
+            modules(netModule, serviceModule, repositoryModule, databaseModule, mainModule)
         }
     }
 }
