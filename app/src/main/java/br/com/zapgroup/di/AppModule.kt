@@ -3,11 +3,17 @@ package br.com.zapgroup.di
 import android.app.Application
 import androidx.room.Room
 import br.com.zapgroup.api.ApiService
-import br.com.zapgroup.api.MainApi
+import br.com.zapgroup.api.PropertyDetailApi
+import br.com.zapgroup.api.PropertyListApi
+import br.com.zapgroup.api.SplashApi
 import br.com.zapgroup.data.AppDatabase
 import br.com.zapgroup.data.PropertyDao
-import br.com.zapgroup.repository.MainRepository
-import br.com.zapgroup.viewmodel.MainViewModel
+import br.com.zapgroup.repository.PropertyDetailRepository
+import br.com.zapgroup.repository.PropertyListRepository
+import br.com.zapgroup.repository.SplashRepository
+import br.com.zapgroup.viewmodel.PropertyDetailViewModel
+import br.com.zapgroup.viewmodel.PropertyListViewModel
+import br.com.zapgroup.viewmodel.SplashViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidApplication
@@ -20,16 +26,34 @@ import java.util.concurrent.TimeUnit
 
 val mainModule = module {
     viewModel {
-        MainViewModel(get())
+        SplashViewModel(get())
+    }
+
+    viewModel {
+        PropertyListViewModel(get())
+    }
+
+    viewModel {
+        PropertyDetailViewModel(get())
     }
 }
 
 val repositoryModule = module {
-    fun provideUserRepository(api: ApiService, db: PropertyDao): MainRepository {
-        return MainApi(api, db)
+    fun provideSplashRepository(api: ApiService, db: PropertyDao): SplashRepository {
+        return SplashApi(api, db)
     }
 
-    factory { provideUserRepository(get(), get()) }
+    fun providePropertyListRepository(db: PropertyDao): PropertyListRepository {
+        return PropertyListApi(db)
+    }
+
+    fun providePropertyDetailRepository(db: PropertyDao): PropertyDetailRepository {
+        return PropertyDetailApi(db)
+    }
+
+    factory { provideSplashRepository(get(), get()) }
+    factory { providePropertyListRepository(get()) }
+    factory { providePropertyDetailRepository(get()) }
 }
 
 val serviceModule = module {

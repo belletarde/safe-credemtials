@@ -1,18 +1,19 @@
 package br.com.zapgroup.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import br.com.zapgroup.databinding.ActivityMainBinding
 import br.com.zapgroup.utils.Status
-import br.com.zapgroup.viewmodel.MainViewModel
+import br.com.zapgroup.viewmodel.SplashViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MainActivity : AppCompatActivity() {
+class SplashActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private val viewModel: MainViewModel by viewModel()
+    private val viewModel: SplashViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,6 +46,8 @@ class MainActivity : AppCompatActivity() {
                 when (resource.status) {
                     Status.SUCCESS -> {
                         binding.objectText.text = resource.data?.images
+                        val i = Intent(this, PropertyListActivity::class.java)
+                        startActivity(i)
                     }
                     Status.ERROR -> {
                         Toast.makeText(this, "Err", Toast.LENGTH_LONG).show()

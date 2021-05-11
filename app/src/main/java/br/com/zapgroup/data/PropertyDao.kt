@@ -15,5 +15,14 @@ interface PropertyDao {
     @Query("SELECT * FROM property LIMIT 1")
     suspend fun getAnyProperty() : PropertyTable
 
+    @Query("SELECT * FROM property LIMIT :limit OFFSET :offset")
+    suspend fun getVivaList(limit: Int = 10, offset: Int = 1) : List<PropertyTable>
+
+    @Query("SELECT * FROM property LIMIT :limit OFFSET :offset")
+    suspend fun getZapList(limit: Int = 10, offset: Int = 1) : List<PropertyTable>
+
+    @Query("SELECT * FROM property Where id = :id")
+    suspend fun getById(id: String) : PropertyTable
+
 }
 

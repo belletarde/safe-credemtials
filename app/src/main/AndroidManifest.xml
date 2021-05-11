@@ -14,9 +14,9 @@
         android:name=".ZapApplication"
         android:networkSecurityConfig="@xml/network_security_config"
         android:theme="@style/Theme.ZapGroup">
-        <activity android:name=".view.PropertyDetail"></activity>
-        <activity android:name=".view.SplashScreen" />
-        <activity android:name=".view.MainActivity">
+        <activity android:name=".view.PropertyDetailActivity"></activity>
+        <activity android:name=".view.PropertyListActivity" />
+        <activity android:name=".view.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
