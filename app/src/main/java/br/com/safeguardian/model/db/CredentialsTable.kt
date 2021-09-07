@@ -1,4 +1,4 @@
-package br.com.zapgroup.model.db
+package br.com.safeguardian.model.db
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

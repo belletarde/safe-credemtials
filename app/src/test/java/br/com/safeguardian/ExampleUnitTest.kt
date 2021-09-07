@@ -1,4 +1,4 @@
-package br.com.zapgroup
+package br.com.safeguardian
 
 import org.junit.Test
 

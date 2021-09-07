@@ -1,4 +1,4 @@
-package br.com.zapgroup.utils
+package br.com.safeguardian.utils
 
 enum class Status {
     SUCCESS,

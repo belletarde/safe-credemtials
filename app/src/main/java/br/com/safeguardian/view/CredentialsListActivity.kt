@@ -1,13 +1,13 @@
-package br.com.zapgroup.view
+package br.com.safeguardian.view
 
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import br.com.zapgroup.databinding.ActivityPropertyListBinding
-import br.com.zapgroup.model.db.CredentialsTable
-import br.com.zapgroup.utils.Status
-import br.com.zapgroup.viewmodel.CredentialsListViewModel
+import br.com.safeguardian.databinding.ActivityPropertyListBinding
+import br.com.safeguardian.model.db.CredentialsTable
+import br.com.safeguardian.utils.Status
+import br.com.safeguardian.viewmodel.CredentialsListViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CredentialsListActivity : AppCompatActivity() {

@@ -1,12 +1,12 @@
-package br.com.zapgroup.di
+package br.com.safeguardian.di
 
 import android.app.Application
 import androidx.room.Room
-import br.com.zapgroup.repository.CredentialsListRepositoryImpl
-import br.com.zapgroup.data.AppDatabase
-import br.com.zapgroup.data.CredentialsDao
-import br.com.zapgroup.repository.CredentialsListRepository
-import br.com.zapgroup.viewmodel.CredentialsListViewModel
+import br.com.safeguardian.repository.CredentialsListRepositoryImpl
+import br.com.safeguardian.data.AppDatabase
+import br.com.safeguardian.data.CredentialsDao
+import br.com.safeguardian.repository.CredentialsListRepository
+import br.com.safeguardian.viewmodel.CredentialsListViewModel
 import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module

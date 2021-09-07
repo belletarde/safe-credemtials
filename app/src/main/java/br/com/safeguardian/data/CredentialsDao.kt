@@ -1,10 +1,10 @@
-package br.com.zapgroup.data
+package br.com.safeguardian.data
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import br.com.zapgroup.model.db.CredentialsTable
+import br.com.safeguardian.model.db.CredentialsTable
 
 @Dao
 interface CredentialsDao {

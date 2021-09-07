@@ -1,4 +1,4 @@
-package br.com.zapgroup.model
+package br.com.safeguardian.model
 
 data class CredentialsFields(
     val password: String,

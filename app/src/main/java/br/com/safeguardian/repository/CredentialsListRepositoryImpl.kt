@@ -1,8 +1,8 @@
-package br.com.zapgroup.repository
+package br.com.safeguardian.repository
 
 
-import br.com.zapgroup.data.CredentialsDao
-import br.com.zapgroup.model.db.CredentialsTable
+import br.com.safeguardian.data.CredentialsDao
+import br.com.safeguardian.model.db.CredentialsTable
 
 class CredentialsListRepositoryImpl(private val db: CredentialsDao) : CredentialsListRepository {
 

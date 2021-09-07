@@ -1,10 +1,10 @@
-package br.com.zapgroup.viewmodel
+package br.com.safeguardian.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
-import br.com.zapgroup.model.db.CredentialsTable
-import br.com.zapgroup.repository.CredentialsListRepository
-import br.com.zapgroup.utils.Resource
+import br.com.safeguardian.model.db.CredentialsTable
+import br.com.safeguardian.repository.CredentialsListRepository
+import br.com.safeguardian.utils.Resource
 import kotlinx.coroutines.Dispatchers
 
 class CredentialsListViewModel(private val repository: CredentialsListRepository): ViewModel() {

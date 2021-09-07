@@ -1,4 +1,4 @@
-package br.com.zapgroup.utils
+package br.com.safeguardian.utils
 
 
 interface Mappable<out T> {
