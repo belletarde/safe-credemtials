@@ -2,7 +2,6 @@ package br.com.zapgroup
 
 import android.app.Application
 import br.com.zapgroup.di.*
-import br.com.zapgroup.di.netModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -14,7 +13,7 @@ class ZapApplication: Application() {
         startKoin {
             androidLogger()
             androidContext(this@ZapApplication)
-            modules(netModule, serviceModule, repositoryModule, databaseModule, mainModule)
+            modules(mainModule, databaseModule, repositoryModule)
         }
     }
 }

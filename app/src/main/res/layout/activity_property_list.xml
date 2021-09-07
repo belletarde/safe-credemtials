@@ -5,9 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/holo_blue_bright"
-    tools:context=".view.PropertyListActivity">
+    tools:context=".view.CredentialsListActivity">
 
     <TextView
+        android:background="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="Adicionar a lista"
+        android:layout_margin="8dp"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:id="@+id/addItem"/>
+
+
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/listtest"/>

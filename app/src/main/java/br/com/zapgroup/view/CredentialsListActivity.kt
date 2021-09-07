@@ -1,33 +1,41 @@
 package br.com.zapgroup.view
 
-import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import br.com.zapgroup.databinding.ActivityMainBinding
+import br.com.zapgroup.databinding.ActivityPropertyListBinding
+import br.com.zapgroup.model.db.CredentialsTable
 import br.com.zapgroup.utils.Status
-import br.com.zapgroup.viewmodel.SplashViewModel
+import br.com.zapgroup.viewmodel.CredentialsListViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class SplashActivity : AppCompatActivity() {
+class CredentialsListActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
-    private val viewModel: SplashViewModel by viewModel()
+    private lateinit var binding: ActivityPropertyListBinding
+    private val viewModel: CredentialsListViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityPropertyListBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setBd()
+        save()
     }
 
-    private fun setBd() {
-        viewModel.setDB().observe(this, Observer {
-            it?.let { resource ->
-                when (resource.status) {
+    private fun save() {
+
+        viewModel.addItemList(CredentialsTable(
+            password = "12345",
+                login = "kevin",
+            description = "g-mail",
+            createdAt = "test",
+            lastView = "test",
+            updatedAt = "test"
+            )).observe(this, Observer {
+            it?.let { resourceData ->
+                when (resourceData.status) {
                     Status.SUCCESS -> {
-                        getFirst()
+                        fetchList()
                     }
                     Status.ERROR -> {
                         Toast.makeText(this, "Err", Toast.LENGTH_LONG).show()
@@ -40,14 +48,12 @@ class SplashActivity : AppCompatActivity() {
         })
     }
 
-    private fun getFirst() {
-        viewModel.getFirstProperty().observe(this, Observer {
-            it?.let { resource ->
-                when (resource.status) {
+    private fun fetchList() {
+        viewModel.getCredentialList().observe(this, Observer {
+            it?.let { resourceData ->
+                when (resourceData.status) {
                     Status.SUCCESS -> {
-                        binding.objectText.text = resource.data?.images
-                        val i = Intent(this, PropertyListActivity::class.java)
-                        startActivity(i)
+                        Toast.makeText(this, "aloha", Toast.LENGTH_LONG).show()
                     }
                     Status.ERROR -> {
                         Toast.makeText(this, "Err", Toast.LENGTH_LONG).show()
